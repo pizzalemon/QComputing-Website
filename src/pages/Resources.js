@@ -1,33 +1,40 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import { Title } from "../components/elements"
 import { Years } from "../components/containers"
 import { PageContainer, PageContentContainer } from "./PageContainer"
-import lectureData from "./lectures.json"
 import { mobileCheck } from "../util"
 
 import { ReactComponent as RawNewTab } from "./new_tab.svg"
 
 const Resources = () => {
-    let lectures = Object.fromEntries(Object.keys(lectureData).map((y) => {
-        return [y,
-            <>
-                {(lectureData[y].beginner ? (
+    const [lectures, setLectures] = useState({})
+
+    useEffect(() => {
+        fetch("/quantum-computing/lectures").then((response) => {
+            return response.json()
+        }).then((lectureData) => {
+            setLectures(Object.fromEntries(Object.keys(lectureData).map((y) => {
+                return [y,
                     <>
-                        <SectionTitle>Beginner Lectures</SectionTitle>
-                        <Lectures full lectures={lectureData[y].beginner} />
+                        {(lectureData[y].beginner ? (
+                            <>
+                                <SectionTitle>Beginner Lectures</SectionTitle>
+                                <Lectures full lectures={lectureData[y].beginner} />
+                            </>
+                        ) : null)}
+                        {(lectureData[y].advanced ? (
+                            <>
+                                <SectionTitle>Advanced Lectures</SectionTitle>
+                                <Lectures full lectures={lectureData[y].advanced} color="#ff1c5c" />
+                            </>
+                        ) : null)}
                     </>
-                ) : null)}
-                {(lectureData[y].advanced ? (
-                    <>
-                        <SectionTitle>Advanced Lectures</SectionTitle>
-                        <Lectures full lectures={lectureData[y].advanced} color="#ff1c5c" />
-                    </>
-                ) : null)}
-            </>
-        ]
-    }))
+                ]
+            })))
+        })
+    }, [])
 
     return (
         <PageContainer>

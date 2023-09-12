@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 const Years = ({ children, style, rowStyle }) => {
     const [select, setSelect] = useState(Object.keys(children)[0])
+
+    useEffect(() => {
+        setSelect(Object.keys(children)[0])
+    }, [children])
 
     return (
         <div style={style}>
