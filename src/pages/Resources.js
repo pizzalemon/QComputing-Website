@@ -59,7 +59,7 @@ const Lectures = ({ lectures, color, full }) => {
         <StyledLecturesContainer>
             {lectures.map(lecture => {
                 return (
-                    <Lecture full={full} color={color} key={lecture.file} href={"/" + lecture.file}>{lecture.name}</Lecture>
+                    <Lecture full={full} color={color} key={lecture.file} href={"/quantum-computing/" + lecture.file}>{lecture.name}</Lecture>
                 )
             })}
         </StyledLecturesContainer>

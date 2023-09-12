@@ -24,13 +24,13 @@ const Link = ({ to, ...props }) => {
 const Header = () => {
     return (
         <StyledHeader>
-            <StyledTitle href="/">
+            <StyledTitle href="/quantum-computing">
                 TJ QC Club
             </StyledTitle>
             {window.innerHeight < 500 || window.innerWidth < 500 ?
                 <Dropdown />
             :
-                <Link to="/resources" styles={{ marginRight: "3em" }}>Resources</Link>
+                <Link to="/quantum-computing/resources" styles={{ marginRight: "3em" }}>Resources</Link>
             }
         </StyledHeader>
     )

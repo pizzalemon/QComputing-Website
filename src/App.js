@@ -14,11 +14,11 @@ const App = () => {
             <StyledContainer>
                 <Header />
                 <Routes>
-                    <Route path="/" element={
+                    <Route path="/quantum-computing" element={
                         <Home />
                     } />
 
-                    <Route path="/resources" element={
+                    <Route path="/quantum-computing/resources" element={
                         <Resources />
                     } />
                 </Routes>
